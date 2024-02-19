@@ -169,7 +169,7 @@ const Footer = ({ t }) => {
                     <div className="footer_copyright text-center">
                         <p>
                             {t("Copyright")} © {new Date().getFullYear()}
-                            {" "}{t("Made By")}{" "}
+                            {" "}{t("Made By Optimum Tech")}{" "}
                             <a href={web_link_footer} target="_blank">
                                 {company_name_footer}
                             </a>
