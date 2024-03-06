@@ -50,67 +50,70 @@ const DashboardPlay = ({ t }) => {
   const getNewQuestions = (category_id, subcategory_id, level) => {
     setLevel(level);
     if (category_id && subcategory_id && level) {
-      QuestionsApi(null, subcategory_id, level, (response) => {
-          let bookmark = getBookmarkData();
-          let questions_ids = Object.keys(bookmark).map((index) => {
-            return bookmark[index].question_id;
-          });
-          let questions = response.data.map((data) => {
-            let isBookmark = false;
-            if (questions_ids.indexOf(data.id) >= 0) {
-              isBookmark = true;
-            } else {
-              isBookmark = false;
-            }
-            return {
-              ...data,
-              isBookmarked: isBookmark,
-              selected_answer: "",
-              isAnswered: false,
-            };
-          });
-          // console.log("que",questions)
-          setQuestions(questions);
-          setShowScore(false);
-          setReviewAnswers(false);
-          setScore(0);
+        QuestionsApi(null, subcategory_id, level, (response) => {
+            let bookmark = getBookmarkData();
+            let questions_ids = Object.keys(bookmark).map((index) => {
+                return bookmark[index].question_id;
+            });
+            let questions = response.data.map((data) => {
+                let isBookmark = questions_ids.includes(data.id);
+                data.question = data.question.replace(/<\/?[^>]+(>|$)/g, ""); // Remove HTML tags
+                data.optiona = data.optiona.replace(/<\/?[^>]+(>|$)/g, "");
+                data.optionb = data.optionb.replace(/<\/?[^>]+(>|$)/g, "");
+                data.optionc = data.optionc.replace(/<\/?[^>]+(>|$)/g, "");
+                data.optiond = data.optiond.replace(/<\/?[^>]+(>|$)/g, "");
+                data.optione = data.optione.replace(/<\/?[^>]+(>|$)/g, "");
+                return {
+                    ...data,
+                    isBookmarked: isBookmark,
+                    selected_answer: "",
+                    isAnswered: false,
+                };
+            });
+            setQuestions(questions);
+            setShowScore(false);
+            setReviewAnswers(false);
+            setScore(0);
 
-      }, (error) => {
-        toast.error(t("No Questions Found"));
-        navigate("/quiz-play");
-        console.log(error);
-      })
+        }, (error) => {
+            toast.error(t("No Questions Found"));
+            navigate("/quiz-play");
+            console.log(error);
+        })
     } else {
-      QuestionsApi(category_id, null, level, (response) => {
-        let bookmark = getBookmarkData();
-        let questions_ids = Object.keys(bookmark).map((index) => {
-          return bookmark[index].question_id;
-        });
-        let questions = response.data.map((data) => {
-          let isBookmark = false;
-          if (questions_ids.indexOf(data.id) >= 0) {
-            isBookmark = true;
-          } else {
-            isBookmark = false;
-          }
-          return {
-            ...data,
-            isBookmarked: isBookmark,
-            selected_answer: "",
-            isAnswered: false,
-          };
-        });
-        setQuestions(questions);
-        setShowScore(false);
-        setReviewAnswers(false);
-        setScore(0);
-      }, (error) => {
-        toast.error(t("No Questions Found"));
-        navigate("/quiz-play");
-        console.log(error)
-      })
+        QuestionsApi(category_id, null, level, (response) => {
+            let bookmark = getBookmarkData();
+            let questions_ids = Object.keys(bookmark).map((index) => {
+                return bookmark[index].question_id;
+            });
+            let questions = response.data.map((data) => {
+                let isBookmark = questions_ids.includes(data.id);
+                data.question = data.question.replace(/<\/?[^>]+(>|$)/g, ""); // Remove HTML tags
+                data.optiona = data.optiona.replace(/<\/?[^>]+(>|$)/g, "");
+                data.optionb = data.optionb.replace(/<\/?[^>]+(>|$)/g, "");
+                data.optionc = data.optionc.replace(/<\/?[^>]+(>|$)/g, "");
+                data.optiond = data.optiond.replace(/<\/?[^>]+(>|$)/g, "");
+                data.optione = data.optione.replace(/<\/?[^>]+(>|$)/g, "");
+
+                return {
+                    ...data,
+                    isBookmarked: isBookmark,
+                    selected_answer: "",
+                    isAnswered: false,
+                };
+            });
+            setQuestions(questions);
+            setShowScore(false);
+            setReviewAnswers(false);
+            setScore(0);
+        }, (error) => {
+            toast.error(t("No Questions Found"));
+            navigate("/quiz-play");
+            console.log(error)
+        })
     }
-  };
+};
+
 
   const handleAnswerOptionClick = (questions, score) => {
     setQuestions(questions);
