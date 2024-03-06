@@ -30,13 +30,13 @@ const Question = ({ t, questions: data, timerSeconds, onOptionClick, onQuestionE
 
     const Score = useRef(0)
 
-    const brainiac_status = Badges && Badges.data.brainiac.status;
+    // const brainiac_status = Badges && Badges.data.brainiac.status;
 
-    const brainiac_coin = Badges && Badges.data.brainiac.badge_reward;
+    // const brainiac_coin = Badges && Badges.data.brainiac.badge_reward;
 
-    const dashingdebut_status = Badges && Badges.data.dashing_debut.status;
+    // const dashingdebut_status = Badges && Badges.data.dashing_debut.status;
 
-    const dashing_debut_coin = Badges && Badges.data.dashing_debut.badge_reward;
+    // const dashing_debut_coin = Badges && Badges.data.dashing_debut.badge_reward;
 
     // store data get
     const userData = useSelector((state) => state.User);
@@ -112,25 +112,25 @@ const Question = ({ t, questions: data, timerSeconds, onOptionClick, onQuestionE
             onQuestionEnd(coins, userScore);
             braniaBadge();
             // dashing badge
-            if (dashingdebut_status === "0") {
-                setBadgesApi("dashing_debut", () => {
-                    LoadNewBadgesData("dashing_debut","1")
-                    toast.success(t("You Won Dashing Debut Badge"));
-                    const status = 0;
-                    UserCoinScoreApi(dashing_debut_coin, null, null, (t("dashing debut reward")), status, (response) => {
-                        getusercoinsApi((responseData) => {
-                            updateUserDataInfo(responseData.data)
-                        }, (error) => {
-                            console.log(error);
-                        });
-                        }, (error) => {
-                        console.log(error);
-                        }
-                    )
-                }, (error) => {
-                    console.log(error);
-                });
-            }
+            // if (dashingdebut_status === "0") {
+            //     setBadgesApi("dashing_debut", () => {
+            //         LoadNewBadgesData("dashing_debut","1")
+            //         toast.success(t("You Won Dashing Debut Badge"));
+            //         const status = 0;
+            //         UserCoinScoreApi(dashing_debut_coin, null, null, (t("dashing debut reward")), status, (response) => {
+            //             getusercoinsApi((responseData) => {
+            //                 updateUserDataInfo(responseData.data)
+            //             }, (error) => {
+            //                 console.log(error);
+            //             });
+            //             }, (error) => {
+            //             console.log(error);
+            //             }
+            //         )
+            //     }, (error) => {
+            //         console.log(error);
+            //     });
+            // }
         }
     };
 
@@ -329,26 +329,26 @@ const Question = ({ t, questions: data, timerSeconds, onOptionClick, onQuestionE
         if (questions.length < 5) {
             return;
         };
-        if (brainiac_status === "0" && (checkLineClickornot == false)) {
-            setBadgesApi("brainiac", () => {
-                LoadNewBadgesData("brainiac", "1")
-                toast.success(t("You Won Brainiac Badge"));
-                const status = 0;
-                UserCoinScoreApi(brainiac_coin, null, null, (t("brainiac reward")), status, (response) => {
-                    getusercoinsApi((responseData) => {
-                        updateUserDataInfo(responseData.data)
-                    }, (error) => {
-                        console.log(error);
-                    });
-                    }, (error) => {
-                    console.log(error);
-                    }
-                )
-            }, (error) => {
-                console.log(error);
-            });
-        }
-    };
+    //     if (brainiac_status === "0" && (checkLineClickornot == false)) {
+    //         // setBadgesApi("brainiac", () => {
+    //         //     LoadNewBadgesData("brainiac", "1")
+    //         //     toast.success(t("You Won Brainiac Badge"));
+    //         //     const status = 0;
+    //         //     UserCoinScoreApi(brainiac_coin, null, null, (t("brainiac reward")), status, (response) => {
+    //         //         getusercoinsApi((responseData) => {
+    //         //             updateUserDataInfo(responseData.data)
+    //         //         }, (error) => {
+    //         //             console.log(error);
+    //         //         });
+    //         //         }, (error) => {
+    //         //         console.log(error);
+    //         //         }
+    //         //     )
+    //         // }, (error) => {
+    //         //     console.log(error);
+    //         // });
+    //     }
+     };
 
 
     return (

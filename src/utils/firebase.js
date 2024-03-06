@@ -18,15 +18,13 @@ const FirebaseData = () => {
     const measurementIdData = websettingsdata && websettingsdata.firebase_measurement_id;
 
     let firebaseConfig = {
-        apiKey: apiKeyData,
-        authDomain: authDomainData,
-        databaseURL: databaseURLData,
-        projectId: projectIdData,
-        storageBucket: storageBucketData,
-        messagingSenderId: messagingSenderIdData,
-        appId: appIdData,
-        measurementId: measurementIdData,
-    }
+        apiKey: "AIzaSyC7Die3yOQ7QJQmfARyYjunj2jafUMgoLo",
+        authDomain: "quiz-app-3461e.firebaseapp.com",
+        projectId: "quiz-app-3461e",
+        storageBucket: "quiz-app-3461e.appspot.com",
+        messagingSenderId: "272221041540",
+        appId: "1:272221041540:web:06c457c79d2870892ba3d1"
+      }
 
     // eslint-disable-next-line
     if (!firebase.apps.length) {
